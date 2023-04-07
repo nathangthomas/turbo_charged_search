@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+
+<%= form_with(url: bands_path, method: :get, data: {turbo_frame: "bands"}) do |form| %>
+
+  <%= form.label :query, "Search by band name:", class: "block mb-2" %>
+  <div class="flex space-x-3">
+    <%= form.text_field :query, class: "py-3 px-4 rounded border ring-0 focus:ring-4 focus:ring-orange-100 focus:shadow-none focus:border-orange-500 focus:outline-none" %>
+
+    <%= form.submit 'Search', class: "px-4 py-3 font-medium
+  bg-orange-300 text-neutal-900 rounded flex items-center cursor-pointer hover:bg-orange-400 focus:ring-4 ring-0 focus:ring-orange-100" %>
+  </div>
+<% end %>
+
+<h1>Bands</h1>
+
+<div id="bands">
+  <% @bands.each do |band| %>
+    <%= render band %>
+    <p>
+      <%= link_to "Show this band", band %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New band", new_band_path %>
